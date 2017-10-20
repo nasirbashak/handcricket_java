@@ -115,7 +115,7 @@ public class Handcricket {
                     System.out.println("Oops Computer Won the Match");
                     System.out.println("Your Score is : " + batcount);
                     System.out.println("Computer Score is : " + balcount);
-                   // System.exit(0);
+                    System.exit(0);
                 }
                 if (res == 2 && f2==1) {
                     System.out.println(".......DRAW MATCH.......");
