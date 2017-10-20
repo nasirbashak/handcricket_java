@@ -11,6 +11,8 @@ public class Handcricket {
     int balcount;
     int flag1 = 0;
     int flag2 = 0;
+    int f1 = 0;
+    int f2 = 0;
     Random rand = new Random();
     Scanner scan = new Scanner(System.in);
 
@@ -20,7 +22,12 @@ public class Handcricket {
         System.out.println("0.HEAD");
         System.out.println("1,TAILS");
         int ch = scan.nextInt();
-        if (ch == res) {
+        if(ch >1){
+            System.out.println("Invalid Toss");
+            System.out.println("pleaase try again.....");
+            System.exit(0);
+        }
+         if (ch == res) {
             System.out.println("You won the toss");
             return 1;
         } else {
@@ -45,7 +52,7 @@ public class Handcricket {
 
         max = 6;
         systemnum = Math.abs(rand.nextInt()) % (max + 1);
-       
+
         return systemnum;
     }
 
@@ -53,9 +60,8 @@ public class Handcricket {
         int res;
         int bres;
         System.out.println("You choose to Bat");
-        
+
         while (true) {
-           
 
             if (flag2 == 1) {
                 res = victorycheck();
@@ -65,9 +71,17 @@ public class Handcricket {
                     System.out.println("Computer Score is : " + balcount);
                     System.exit(0);
                 }
-                
+                if (res == 2 && f1 == 1) {
+                    System.out.println(".......DRAW MATCH.......");
+                    System.out.println("Ohh It's really a close match");
+                    System.out.println("Your Score is : " + batcount);
+                    System.out.println("Computer Score is : " + balcount);
+                    System.exit(0);
+                }
+
             }
-           
+            int num2 = randnum();
+            System.out.println("rand num is :" + systemnum);
 
             System.out.println("Enter your number");
             int num = scan.nextInt();
@@ -79,7 +93,7 @@ public class Handcricket {
 
             }
 
-            int num2 = randnum();
+            //int num2 = randnum();
             bres = batting(num, num2);
             if (bres == 0) {
                 break;
@@ -93,7 +107,7 @@ public class Handcricket {
 
         System.out.println("You choose to Bowl");
         int res;
-        
+
         while (true) {
             if (flag1 == 1) {
                 res = victorycheck();
@@ -101,11 +115,20 @@ public class Handcricket {
                     System.out.println("Oops Computer Won the Match");
                     System.out.println("Your Score is : " + batcount);
                     System.out.println("Computer Score is : " + balcount);
+                   // System.exit(0);
+                }
+                if (res == 2 && f2==1) {
+                    System.out.println(".......DRAW MATCH.......");
+                    System.out.println("Ohh It's really a close match");
+                    System.out.println("Your Score is : " + batcount);
+                    System.out.println("Computer Score is : " + balcount);
                     System.exit(0);
                 }
-                
+
             }
-           
+            int num2 = randnum();
+            System.out.println("rand num is :" + systemnum);
+
             System.out.println("Enter your number");
             int num = scan.nextInt();
             if (num > 6 || num < 0) {
@@ -116,7 +139,7 @@ public class Handcricket {
 
             }
 
-            int num2=randnum();
+            //int num2=randnum();
             int bres = bowling(num, num2);
             if (bres == 0) {
                 break;
@@ -127,11 +150,12 @@ public class Handcricket {
     }
 
     public int batting(int num, int systemnum) {
-        
+
         System.out.println("Computer : " + systemnum);
         System.out.println("Player : " + num);
 
         if (num == systemnum) {
+            f1=1;
             System.out.println("your score is : " + batcount);
             System.out.println("Sorry buddy You are out......");
             return 0;
@@ -143,11 +167,12 @@ public class Handcricket {
     }
 
     public int bowling(int num, int systemnum) {
-        
+
         System.out.println("Player : " + num);
         System.out.println("Computer : " + systemnum);
 
         if (num == systemnum) {
+            f2=1;
             System.out.println("Computer score is : " + balcount);
             System.out.println();
             System.out.println("Hurrah Computer is out......");
@@ -163,9 +188,8 @@ public class Handcricket {
     public static void main(String[] args) {
         Handcricket hc = new Handcricket();
 
-        
         int choice;
-       
+
         System.out.println("Welcome to our HAND - CRICKET GAME");
         System.out.println("==================================");
         int toss = hc.toss();
